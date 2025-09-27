@@ -1,0 +1,33 @@
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Virtual environments and env files
+.venv/
+venv/
+.env
+
+# OS/editor
+.DS_Store
+.idea/
+.vscode/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Data (do not commit raw or processed CSVs)
+/data/raw/
+/data/processed/
+
+# Experiment outputs and results
+/experiments/
+/results/
+/logs/
+
+# Model artifacts
+*.pt
+*.bin
+*.ckpt
+
+

@@ -1,0 +1,217 @@
+# Experimental Configurations for Combined Dataset (200k_jokes + puns)
+# ==================================================================
+
+# Experiment 0: Architecture Comparison (Run First)
+# architecture_comparison:
+#   description: "Compare different model architectures to identify the best baseline on combined dataset"
+#   base_params:
+#     experiment_category: "architecture_comparison_combined"
+#     setup_ratio: 0.7
+#     dropout_rate: 0.2
+#     learning_rate: 2e-5
+#     epochs: 1
+#     batch_size: 64
+#     max_seq_length: 64
+#     freeze_backbone: false
+  
+#   variations:
+#     - model_type: "baseline"
+#       experiment_id: "combined_baseline_cnn"
+#       learning_rate: 1e-3  # Higher LR for non-transformer model
+      
+#     - model_type: "transformer"
+#       model_name: "distilbert-base-uncased"
+#       experiment_id: "combined_transformer_distilbert"
+      
+#     - model_type: "proposed"
+#       model_name: "distilbert-base-uncased"
+#       spa_heads: 1
+#       experiment_id: "combined_proposed_distilbert_spa1"
+      
+
+# # Default base configuration for combined dataset
+base_config:
+  model_name: "distilbert-base-uncased"
+  dataset: "humor"  # Use the processed humor dataset (humor_train.csv, humor_val.csv, humor_test.csv)
+  max_seq_length: 64  # Increased for diverse joke lengths
+  batch_size: 64     # Larger batch for bigger dataset
+  random_seed: 42
+  epochs: 1          # Fewer epochs due to larger dataset size
+
+# # Experiment 1: Setup-Punchline Attention Analysis on Combined Dataset
+# spa_analysis:
+#   description: "Investigate optimal number of attention heads for SPA mechanism on combined dataset"
+#   base_params:
+#     experiment_category: "spa_analysis_combined"
+#     setup_ratio: 0.7
+#     dropout_rate: 0.3
+#     freeze_backbone: false
+#     learning_rate: 2e-5
+  
+#   variations:
+#     - spa_heads: 1
+#       experiment_id: "combined_spa_heads_1_single"
+#     - spa_heads: 2
+#       experiment_id: "combined_spa_heads_2_light"
+#     - spa_heads: 3 
+#       experiment_id: "combined_spa_heads_3_moderate"
+#     - spa_heads: 4
+#       experiment_id: "combined_spa_heads_4_high"
+# Experiment 2: Setup-Punchline Segmentation for Combined Dataset
+setup_ratio_optimization:
+  description: "Find optimal ratio for dividing jokes into setup and punchline"
+  base_params:
+    experiment_category: "setup_ratio_optimization_combined"
+    spa_heads: 1
+    dropout_rate: 0.3
+    freeze_backbone: false
+    learning_rate: 2e-5
+  
+  variations:
+    - setup_ratio: 0.1
+      experiment_id: "combined_setup_ratio_10"
+    - setup_ratio: 0.5
+      experiment_id: "combined_setup_ratio_50"
+    - setup_ratio: 0.7
+      experiment_id: "combined_setup_ratio_70"
+    - setup_ratio: 0.9
+      experiment_id: "combined_setup_ratio_90"
+
+# Experiment 3: Backbone Freezing Strategy for Combined Dataset
+backbone_freezing:
+  description: "Analyze effect of freezing BERT backbone with different learning rates"
+  base_params:
+    experiment_category: "backbone_freezing_combined"
+    spa_heads: 1
+    setup_ratio: 0.7
+    dropout_rate: 0.3
+  
+  variations:
+    - freeze_backbone: true
+      learning_rate: 2e-5
+      experiment_id: "combined_freeze_true_lr_2e5"
+    - freeze_backbone: false
+      learning_rate: 2e-5
+      experiment_id: "combined_freeze_false_lr_2e5"
+
+
+# Experiment 4: Regularization Study for Combined Dataset
+regularization_study:
+  description: "Study effect of dropout on different model components"
+  base_params:
+    experiment_category: "regularization_study_combined"
+    spa_heads: 1
+    setup_ratio: 0.7
+    freeze_backbone: false
+    learning_rate: 2e-5
+  
+  variations:
+    - dropout_rate: 0.1
+      experiment_id: "combined_dropout_01_low"
+    - dropout_rate: 0.2
+      experiment_id: "combined_dropout_02_standard"
+    - dropout_rate: 0.3
+      experiment_id: "combined_dropout_03_moderate"
+    - dropout_rate: 0.4
+      experiment_id: "combined_dropout_04_high"
+    - dropout_rate: 0.5
+      experiment_id: "combined_dropout_05_very_high"
+
+
+# Baseline comparison experiment
+baseline_comparison:
+  description: "Compare different model architectures on combined dataset"
+  base_params:
+    experiment_category: "baseline_comparison_combined"
+    setup_ratio: 0.7
+    dropout_rate: 0.2
+    learning_rate: 2e-5
+    epochs: 1
+  
+  variations:
+    - spa_heads: 0  # No SPA mechanism (standard BERT)
+      freeze_backbone: false
+      experiment_id: "combined_standard_bert"
+    - spa_heads: 1  # Single head SPA
+      freeze_backbone: false
+      experiment_id: "combined_spa_single"
+    - spa_heads: 2  # Multi-head SPA
+      freeze_backbone: false
+      experiment_id: "combined_spa_multi"
+    - spa_heads: 4  # High SPA
+      freeze_backbone: false
+      experiment_id: "combined_spa_high"
+
+# Quick test configuration for development
+quick_test:
+  description: "Quick test with minimal epochs for development on combined dataset"
+  base_params:
+    experiment_category: "quick_test_combined"
+    spa_heads: 1
+    setup_ratio: 0.7
+    dropout_rate: 0.3
+    freeze_backbone: false
+    learning_rate: 2e-5
+    epochs: 1
+    batch_size: 16
+    max_seq_length: 48  # Shorter for faster processing
+  
+  variations:
+    - experiment_id: "combined_quick_test_proposed"
+
+# Sample dataset experiment (using a subset for even faster testing)
+sample_test:
+  description: "Test on sample combined dataset for rapid iteration"
+  base_params:
+    experiment_category: "sample_test_combined"
+    spa_heads: 1
+    setup_ratio: 0.7
+    dropout_rate: 0.3
+    freeze_backbone: false
+    learning_rate: 2e-5
+    epochs: 1
+    batch_size: 8
+    max_seq_length: 48
+    # Could be used with a subset of the training data
+  
+  variations:
+    - experiment_id: "combined_sample_quick_test"
+
+# Comprehensive model comparison
+comprehensive_comparison:
+  description: "Comprehensive comparison of different configurations on combined dataset"
+  base_params:
+    experiment_category: "comprehensive_comparison_combined"
+    dropout_rate: 0.3
+    learning_rate: 2e-5
+    epochs: 2
+  
+  variations:
+    # Standard configurations
+    - spa_heads: 0
+      setup_ratio: 0.7
+      freeze_backbone: false
+      experiment_id: "combined_standard_baseline"
+    
+    # SPA variations
+    - spa_heads: 2
+      setup_ratio: 0.6
+      freeze_backbone: false
+      experiment_id: "combined_spa_setup_60"
+    
+    - spa_heads: 2
+      setup_ratio: 0.7
+      freeze_backbone: false
+      experiment_id: "combined_spa_setup_70"
+    
+    - spa_heads: 3
+      setup_ratio: 0.7
+      freeze_backbone: false
+      experiment_id: "combined_spa_multi_head"
+    
+    # Frozen backbone experiments
+    - spa_heads: 2
+      setup_ratio: 0.7
+      freeze_backbone: true
+      learning_rate: 5e-5
+      experiment_id: "combined_frozen_backbone"
