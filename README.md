@@ -11,16 +11,14 @@ This repository contains a small NLP research codebase for humor detection on a 
 ### TL;DR – Quickstart
 
 ```bash
-# 1) Create and activate an environment (Python 3.10+ recommended)
-python -m venv .venv && source .venv/bin/activate
 
-# 2) Install dependencies
+# 1) Install dependencies
 pip install -U torch transformers pandas numpy scikit-learn pyyaml tqdm
 
-# 3) Prepare data (place the three CSVs under data/raw; see Data section)
+# 2) Prepare data (place the three CSVs under data/raw; see Data section)
 python src/data/preprocess_raw_data.py
 
-# 4) Run a quick test experiment
+# 3) Run a quick test experiment
 python run_combined_experiments.py --experiment quick_test
 ```
 
