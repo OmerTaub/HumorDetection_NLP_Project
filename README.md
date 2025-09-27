@@ -1,4 +1,5 @@
-## Humor Detection (NLP) – Experiments and YAML Runner
+## Humor Detection with Setup–Punchline Attention and Incongruity
+Modeling - Humor Recognition Task
 
 This repository contains a small NLP research codebase for humor detection on a combined dataset of jokes and puns. It includes:
 
