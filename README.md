@@ -1,5 +1,4 @@
-## Humor Detection with Setup–Punchline Attention and Incongruity
-Modeling - Humor Recognition Task
+## Humor Detection with Setup–Punchline Attention Modeling - Humor Recognition Task
 
 This repository contains a small NLP research codebase for humor detection on a combined dataset of jokes and puns. It includes:
 
