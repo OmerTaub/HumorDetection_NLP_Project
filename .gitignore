@@ -19,8 +19,10 @@ venv/
 # Data (ignore contents, keep directory via .gitkeep)
 /data/raw/*
 !/data/raw/.gitkeep
+!/data/raw/*.csv
 /data/processed/*
 !/data/processed/.gitkeep
+!/data/processed/*.csv
 
 # Experiment outputs and results (ignore contents, keep dir via .gitkeep)
 /experiments/*
