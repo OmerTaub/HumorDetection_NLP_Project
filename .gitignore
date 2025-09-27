@@ -16,14 +16,19 @@ venv/
 # Notebooks
 .ipynb_checkpoints/
 
-# Data (do not commit raw or processed CSVs)
-/data/raw/
-/data/processed/
+# Data (ignore contents, keep directory via .gitkeep)
+/data/raw/*
+!/data/raw/.gitkeep
+/data/processed/*
+!/data/processed/.gitkeep
 
-# Experiment outputs and results
-/experiments/
-/results/
-/logs/
+# Experiment outputs and results (ignore contents, keep dir via .gitkeep)
+/experiments/*
+!/experiments/.gitkeep
+/results/*
+!/results/.gitkeep
+/logs/*
+!/logs/.gitkeep
 
 # Model artifacts
 *.pt
