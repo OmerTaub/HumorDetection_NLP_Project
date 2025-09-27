@@ -32,8 +32,7 @@ nlp_proj_new/
 │  └─ processed/                    # Preprocessed splits written here (humor_*.csv)
 ├─ experiments/
 │  └─ yaml_driven/                  # Results, logs, summaries per run
-├─ models/
-│  └─ three_architectures/          # (Artifacts or related assets if any)
+|
 ├─ src/
 │  ├─ data/
 │  │  └─ preprocess_raw_data.py     # Raw → processed CSVs with dedup & split
